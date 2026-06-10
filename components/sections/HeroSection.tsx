@@ -195,7 +195,7 @@ export function HeroSection() {
         }}
       />
 
-      <div className="relative wrap flex flex-col items-center text-center gap-8 z-10">
+      <div className="relative wrap flex flex-col items-center text-center gap-8 z-10 pb-36">
 
         {/* Eyebrow */}
         <motion.div

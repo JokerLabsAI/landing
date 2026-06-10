@@ -58,6 +58,7 @@ export interface SiteContent {
     lead: string;
     body1: string;
     body2: string;
+    statsTitle: string;
     stats: Array<{ value: string; label: string }>;
   };
 

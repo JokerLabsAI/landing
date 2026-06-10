@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Loader2, CheckCircle2 } from "lucide-react";
+import { Send, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { Eyebrow } from "@/components/shared/Eyebrow";
 import { RevealBlock } from "@/components/shared/RevealBlock";
 import { useContent } from "@/components/layout/LocaleProvider";
 import { SITE } from "@/lib/constants";
 import { fadeUp, viewportOnce } from "@/lib/motion";
 
-type Status = "idle" | "sending" | "sent";
+type Status = "idle" | "sending" | "sent" | "error";
 
 export function ContactSection() {
   const c = useContent();
@@ -23,8 +23,17 @@ export function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
-    await new Promise((r) => setTimeout(r, 1400));
-    setStatus("sent");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error("send failed");
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -81,6 +90,32 @@ export function ContactSection() {
                 <div className="flex flex-col gap-2">
                   <h3 className="text-xl font-bold" style={{ color: "var(--foreground)" }}>{c.contact.successTitle}</h3>
                   <p className="text-sm" style={{ color: "var(--dim)" }}>{c.contact.successMsg}</p>
+                </div>
+              </motion.div>
+            ) : status === "error" ? (
+              <motion.div
+                className="flex flex-col items-center justify-center gap-5 p-12 rounded-2xl border text-center"
+                style={{ background: "var(--surf)", borderColor: "oklch(0.577 0.245 27.325)" }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+              >
+                <AlertCircle size={40} style={{ color: "oklch(0.577 0.245 27.325)" }} />
+                <div className="flex flex-col gap-4">
+                  <h3 className="text-xl font-bold" style={{ color: "var(--foreground)" }}>
+                    {c.locale === "es" ? "Error al enviar" : "Failed to send"}
+                  </h3>
+                  <p className="text-sm" style={{ color: "var(--dim)" }}>
+                    {c.locale === "es"
+                      ? "Hubo un problema al enviar tu mensaje. Intenta de nuevo o contáctanos por email."
+                      : "Something went wrong. Please try again or reach us directly by email."}
+                  </p>
+                  <button
+                    onClick={() => setStatus("idle")}
+                    className="px-5 py-2.5 rounded-full text-sm font-semibold text-white self-center"
+                    style={{ background: "var(--jl-primary)" }}
+                  >
+                    {c.locale === "es" ? "Intentar de nuevo" : "Try again"}
+                  </button>
                 </div>
               </motion.div>
             ) : (

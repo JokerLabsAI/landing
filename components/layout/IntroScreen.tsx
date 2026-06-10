@@ -41,7 +41,7 @@ export function IntroScreen() {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
           >
-            <Logo size={100} />
+            <Logo size={200} />
           </motion.div>
 
           <motion.div

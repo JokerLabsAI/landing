@@ -1,12 +1,12 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import { Logo } from "@/components/shared/Logo";
 import { useContent } from "@/components/layout/LocaleProvider";
 import { SITE, NAV_ITEMS, MARQUEE_ITEMS_2 } from "@/lib/constants";
 import { fadeUp, viewportOnce } from "@/lib/motion";
 import { Mail, MapPin, ArrowUpRight } from "lucide-react";
+import { TextHoverEffect, FooterBackgroundGradient } from "@/components/ui/hover-footer";
 
 const MARQUEE_ITEMS_DOUBLED = [...MARQUEE_ITEMS_2, ...MARQUEE_ITEMS_2];
 const SUITS = ["♠", "♦", "♣", "♥"];
@@ -62,57 +62,26 @@ const SOCIAL_LINKS = [
 
 export function Footer() {
   const c = useContent();
-  const footerRef = useRef<HTMLElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: footerRef,
-    offset: ["start end", "end end"],
-  });
-
-  const rawScale   = useTransform(scrollYProgress, [0, 1], [1.18, 1]);
-  const rawOpacity = useTransform(scrollYProgress, [0, 0.4, 1], [0, 0.55, 0.1]);
-  const rawY       = useTransform(scrollYProgress, [0, 1], [40, 0]);
-
-  const scale   = useSpring(rawScale,   { stiffness: 60, damping: 18 });
-  const opacity = useSpring(rawOpacity, { stiffness: 60, damping: 18 });
-  const y       = useSpring(rawY,       { stiffness: 60, damping: 18 });
 
   const scrollTo = (id: string) =>
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <footer
-      ref={footerRef}
-      className="relative overflow-hidden"
-      style={{ background: "var(--bg2)", borderTop: "1px solid var(--border)" }}
+      className="relative overflow-hidden mx-4 sm:mx-6 lg:mx-8 mb-4 sm:mb-6 rounded-2xl lg:rounded-3xl"
+      style={{
+        background: "var(--bg2)",
+        border: "1px solid var(--border)",
+      }}
     >
       {/* Top accent glow */}
       <div
-        className="absolute top-0 left-0 right-0 h-px"
+        className="absolute top-0 left-0 right-0 h-px z-10"
         style={{
           background: "linear-gradient(90deg, transparent, var(--jl-primary), transparent)",
           boxShadow: "0 0 24px 2px color-mix(in srgb, var(--jl-primary) 40%, transparent)",
         }}
       />
-
-      {/* Ghost JOKERLABS — soft scroll-driven parallax */}
-      <div
-        className="absolute inset-0 flex items-center justify-center select-none pointer-events-none"
-        aria-hidden
-      >
-        <motion.span
-          className="text-[clamp(64px,16vw,200px)] font-black tracking-tighter leading-none"
-          style={{
-            color: "transparent",
-            WebkitTextStroke: "1px var(--border-s)",
-            scale,
-            opacity,
-            y,
-          }}
-        >
-          JOKERLABS
-        </motion.span>
-      </div>
 
       {/* Marquee strip */}
       <div
@@ -137,101 +106,82 @@ export function Footer() {
         </motion.div>
       </div>
 
-      {/* Bold CTA callout */}
-      <motion.div
-        className="relative border-b"
-        style={{ borderColor: "var(--border)" }}
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
-      >
-        <div className="wrap py-14 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div>
-            <p
-              className="text-xs font-semibold uppercase tracking-widest mb-2"
-              style={{ color: "var(--jl-primary)", fontFamily: "var(--font-mono-jb)" }}
-            >
-              {c.footer.contactLabel}
-            </p>
-            <h2
-              className="text-3xl md:text-4xl font-black tracking-tight leading-none"
-              style={{ color: "var(--foreground)" }}
-            >
-              {c.footer.cta}
-            </h2>
-          </div>
-          <motion.a
-            href="#contact"
-            onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}
-            className="flex items-center gap-2 px-7 py-4 rounded-full text-base font-bold text-white flex-shrink-0"
-            style={{
-              background: "var(--jl-primary)",
-              boxShadow: "0 0 32px color-mix(in srgb, var(--jl-primary) 45%, transparent)",
-            }}
-            whileHover={{ scale: 1.06, boxShadow: "0 0 48px color-mix(in srgb, var(--jl-primary) 60%, transparent)" }}
-            whileTap={{ scale: 0.96 }}
-          >
-            {c.footer.cta}
-            <ArrowUpRight size={18} strokeWidth={2.5} />
-          </motion.a>
-        </div>
-      </motion.div>
 
-      {/* Main grid */}
-      <div className="relative wrap section-pad">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
-          {/* Brand col */}
+
+      {/* Main grid — 4 columns like CodeDale reference
+          Desktop: Brand | Navigate | Follow | Contact
+          Tablet:  2×2
+          Mobile:  1 col, centered                       */}
+      <div className="relative wrap z-10" style={{ paddingTop: 80, paddingBottom: 80 }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-10 items-start">
+
+          {/* ── Col 1: Brand ──────────────────────────────────────────── */}
           <motion.div
-            className="flex flex-col gap-6"
+            className="flex flex-col items-center text-center lg:items-start lg:text-left gap-5"
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
           >
-            <div className="flex items-center gap-3">
-              <Logo size={40} />
-              <span className="text-xl font-black tracking-tight" style={{ color: "var(--foreground)" }}>
-                JokerLabs
-              </span>
-            </div>
+            <motion.div
+              className="relative w-fit mx-auto lg:mx-0"
+              whileHover={{ scale: 1.07 }}
+              transition={{ type: "spring", stiffness: 350, damping: 22 }}
+            >
+              <motion.div
+                className="absolute pointer-events-none"
+                style={{
+                  inset: "-28px",
+                  borderRadius: "50%",
+                  background:
+                    "radial-gradient(circle, rgba(26,110,219,0.32) 0%, rgba(0,201,167,0.1) 45%, transparent 72%)",
+                }}
+                animate={{ opacity: [0.5, 1, 0.5], scale: [0.88, 1.08, 0.88] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.div
+                className="absolute pointer-events-none"
+                style={{
+                  inset: "-5px",
+                  borderRadius: "50%",
+                  border: "1px solid rgba(26,110,219,0.22)",
+                }}
+                animate={{ opacity: [0.25, 0.65, 0.25] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              />
+              <Logo size={130} className="relative z-10" />
+            </motion.div>
+
             <p className="text-sm leading-relaxed" style={{ color: "var(--dim)" }}>
               {c.footer.tagline}
             </p>
-            <div className="flex items-center gap-2 text-sm" style={{ color: "var(--dim)" }}>
+
+            <div className="flex items-center justify-center lg:justify-start gap-2 text-sm" style={{ color: "var(--dim)" }}>
               <MapPin size={13} />
               <span>{SITE.location}</span>
             </div>
+
             <a
               href={`mailto:${SITE.email}`}
-              className="flex items-center gap-2 text-sm transition-colors"
+              className="flex items-center justify-center lg:justify-start gap-2 text-sm transition-colors"
               style={{ color: "var(--dim)" }}
             >
               <Mail size={13} />
               {SITE.email}
             </a>
-
-            {/* Social icons */}
-            <div className="flex gap-2 flex-wrap">
-              {SOCIAL_LINKS.map(({ href, label, Icon }) => (
-                <SocialLink key={label} href={href} label={label}>
-                  <Icon size={16} />
-                </SocialLink>
-              ))}
-            </div>
           </motion.div>
 
-          {/* Nav col */}
+          {/* ── Col 2: Navigate ───────────────────────────────────────── */}
           <motion.div
-            className="flex flex-col gap-4"
+            className="flex flex-col items-center text-center lg:items-start lg:text-left gap-4"
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
-            transition={{ delay: 0.1 }}
+            transition={{ delay: 0.08 }}
           >
             <span
-              className="text-xs font-semibold uppercase tracking-widest"
+              className="text-xs font-semibold uppercase tracking-widest mb-1"
               style={{ color: "var(--faint)", fontFamily: "var(--font-mono-jb)" }}
             >
               {c.footer.navigateLabel}
@@ -241,7 +191,7 @@ export function Footer() {
                 key={href}
                 href={href}
                 onClick={(e) => { e.preventDefault(); scrollTo(href.replace("#", "")); }}
-                className="group flex items-center gap-1.5 text-sm transition-colors w-fit"
+                className="group flex items-center gap-1.5 text-sm transition-colors"
                 style={{ color: "var(--dim)" }}
               >
                 <span className="transition-colors group-hover:text-[var(--foreground)]">
@@ -256,17 +206,53 @@ export function Footer() {
             ))}
           </motion.div>
 
-          {/* Contact col */}
+          {/* ── Col 3: Follow (socials as labeled links) ──────────────── */}
           <motion.div
-            className="flex flex-col gap-4"
+            className="flex flex-col items-center text-center lg:items-start lg:text-left gap-4"
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.16 }}
           >
             <span
-              className="text-xs font-semibold uppercase tracking-widest"
+              className="text-xs font-semibold uppercase tracking-widest mb-1"
+              style={{ color: "var(--faint)", fontFamily: "var(--font-mono-jb)" }}
+            >
+              Follow
+            </span>
+            {SOCIAL_LINKS.map(({ href, label }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-1.5 text-sm transition-colors"
+                style={{ color: "var(--dim)" }}
+              >
+                <span className="transition-colors group-hover:text-[var(--foreground)]">
+                  {label}
+                </span>
+                <ArrowUpRight
+                  size={11}
+                  className="opacity-0 group-hover:opacity-100 transition-opacity"
+                  style={{ color: "var(--jl-primary)" }}
+                />
+              </a>
+            ))}
+          </motion.div>
+
+          {/* ── Col 4: Contact ────────────────────────────────────────── */}
+          <motion.div
+            className="flex flex-col items-center text-center lg:items-start lg:text-left gap-4"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            transition={{ delay: 0.24 }}
+          >
+            <span
+              className="text-xs font-semibold uppercase tracking-widest mb-1"
               style={{ color: "var(--faint)", fontFamily: "var(--font-mono-jb)" }}
             >
               {c.footer.contactLabel}
@@ -283,7 +269,7 @@ export function Footer() {
             <motion.a
               href="#contact"
               onClick={(e) => { e.preventDefault(); scrollTo("contact"); }}
-              className="mt-2 flex w-fit items-center gap-2 px-5 py-3 rounded-full text-sm font-bold text-white"
+              className="mt-2 flex items-center gap-2 px-5 py-3 rounded-full text-sm font-bold text-white"
               style={{
                 background: "var(--jl-primary)",
                 boxShadow: "0 0 24px color-mix(in srgb, var(--jl-primary) 35%, transparent)",
@@ -298,6 +284,7 @@ export function Footer() {
               <ArrowUpRight size={16} strokeWidth={2.5} />
             </motion.a>
           </motion.div>
+
         </div>
 
         {/* Bottom bar */}
@@ -309,7 +296,6 @@ export function Footer() {
             © {new Date().getFullYear()} JokerLabs. All rights reserved.
           </span>
 
-          {/* Animated suits */}
           <div className="flex items-center gap-4">
             {SUITS.map((suit, i) => (
               <motion.span
@@ -335,6 +321,14 @@ export function Footer() {
           </span>
         </div>
       </div>
+
+      {/* Animated JOKERLABS signature — letters drawn stroke by stroke on load */}
+      <div className="hidden lg:flex h-56 -mt-20 relative z-10">
+        <TextHoverEffect text="JOKERLABS" />
+      </div>
+
+      {/* Atmospheric depth gradient */}
+      <FooterBackgroundGradient />
     </footer>
   );
 }
