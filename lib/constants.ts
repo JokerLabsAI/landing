@@ -141,11 +141,11 @@ export const PROCESS_STEPS: Array<{
 
 // ─── Team ─────────────────────────────────────────────────────────────────────
 export const TEAM = [
-  { initials: "JC", name: "Joker Camilo",     role: "Sr. DevOps Engineer",        suit: "♠" },
-  { initials: "JC", name: "Joker Cisthian",   role: "Sr. AI Engineer",      suit: "♦" },
-  { initials: "JJ", name: "Joker Jhonas", role: "Sr. AI Engineer",    suit: "♣" },
-  { initials: "JJ", name: "Joker Julian",  role: "Sr. Frontend Engineer",  suit: "♥" },
-  { initials: "JJ", name: "Joker Jse Five",  role: "Sr. Fullstack Engineer",   suit: "★" },
+  { initials: "JC", name: "Joker Camilo",     role: "DevOps Engineer",        suit: "♠" },
+  { initials: "JC", name: "Joker Cisthian",   role: "AI Engineer",      suit: "♦" },
+  { initials: "JJ", name: "Joker Jhonas", role: "AI Engineer",    suit: "♣" },
+  { initials: "JJ", name: "Joker Julian",  role: "Frontend Engineer",  suit: "♥" },
+  { initials: "JJ", name: "Joker Jse Five",  role: "Fullstack Engineer",   suit: "★" },
 ] as const;
 
 // ─── FAQ ──────────────────────────────────────────────────────────────────────

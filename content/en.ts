@@ -191,7 +191,7 @@ export const en: SiteContent = {
     line1: "Five founders.",
     line2: "One mission.",
     sub: "Each founder covers a discipline. Together we cover every angle of your problem — from the model to the machine.",
-    roles: ["Sr. DevOps Engineer", "Sr. AI Engineer", "Sr. AI Engineer", "Sr. Frontend Engineer", "Sr. Fullstack Engineer"],
+    roles: ["DevOps Engineer", "AI Engineer", "AI Engineer", "Frontend Engineer", "Fullstack Engineer"],
   },
 
   contact: {
