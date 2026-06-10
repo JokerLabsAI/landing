@@ -1,26 +1,187 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
+/* ============================================================
+   JOKER LABS — Design Tokens (Tailwind v4)
+   ============================================================ */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--jl-primary);
+  --color-primary-foreground: oklch(1 0 0);
+  --color-accent: var(--jl-accent);
+  --color-accent-foreground: oklch(1 0 0);
+  --color-muted: var(--surf);
+  --color-muted-foreground: var(--dim);
+  --color-border: var(--border);
+  --color-ring: var(--jl-primary);
+  --color-destructive: oklch(0.577 0.245 27.325);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+  --font-sans: var(--font-space);
+  --font-mono: var(--font-mono-jb);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ---- DARK THEME (default) ---- */
+:root,
+.dark {
+  --background:     #060C18;
+  --bg2:            #07101F;
+  --surf:           #0B1827;
+  --surf2:          #0E1E30;
+  --foreground:     #EEF2F9;
+  --dim:            #7A94B0;
+  --faint:          #3D5470;
+  --card:           #0B1827;
+  --card-foreground:#EEF2F9;
+  --jl-primary:     #1A6EDB;
+  --jl-accent:      #00C9A7;
+  --jl-horizon:     #5BA4F5;
+  --border:         rgba(240,244,252,.07);
+  --border-s:       rgba(240,244,252,.14);
+  --glass:          rgba(6,12,24,.88);
+  --mark:           #EEF2F9;
+  --shadow:         0 28px 60px -20px rgba(0,0,0,.8);
+  --ease:           cubic-bezier(.22,.61,.36,1);
+  --ease-spring:    cubic-bezier(.34,1.56,.64,1);
+  color-scheme: dark;
+}
+
+/* ---- LIGHT THEME ---- */
+.light {
+  --background:     #F4F6FA;
+  --bg2:            #EDF1F8;
+  --surf:           #FBFCFE;
+  --surf2:          #F7F9FD;
+  --foreground:     #050E1A;
+  --dim:            #46566E;
+  --faint:          #9AA8BE;
+  --card:           #FBFCFE;
+  --card-foreground:#050E1A;
+  --jl-primary:     #1A6EDB;
+  --jl-accent:      #00866E;
+  --jl-horizon:     #1A6EDB;
+  --border:         rgba(5,14,26,.09);
+  --border-s:       rgba(5,14,26,.16);
+  --glass:          rgba(244,246,250,.92);
+  --mark:           #050E1A;
+  --shadow:         0 28px 60px -20px rgba(10,32,64,.25);
+  color-scheme: light;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition: background .5s var(--ease), color .5s var(--ease);
   }
+
+  h1, h2, h3, h4 {
+    font-weight: 700;
+    line-height: 1.06;
+    margin: 0;
+    letter-spacing: -.04em;
+  }
+
+  p { margin: 0; line-height: 1.72; }
+  a { color: inherit; text-decoration: none; }
+  svg, img { display: block; }
+  button { cursor: pointer; border: none; background: none; font-family: inherit; padding: 0; }
+  ::selection { background: var(--jl-primary); color: #fff; }
+  :focus-visible { outline: 2px solid var(--jl-accent); outline-offset: 3px; }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ============================================================
+   LAYOUT UTILITIES
+   ============================================================ */
+.wrap {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+@media (max-width: 760px) { .wrap { padding: 0 24px; } }
+
+.section-pad { padding: 128px 0; }
+@media (max-width: 760px) { .section-pad { padding: 80px 0; } }
+
+.section-head {
+  max-width: 700px;
+  margin: 0 auto 64px;
+  text-align: center;
+}
+.section-head h2 {
+  font-size: clamp(32px, 4.5vw, 58px);
+  margin-top: 16px;
+}
+
+/* ============================================================
+   TYPOGRAPHY HELPERS
+   ============================================================ */
+.eyebrow {
+  font-family: var(--font-mono-jb), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--jl-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+  opacity: .5;
+}
+
+.lead {
+  color: var(--dim);
+  font-size: 17px;
+  line-height: 1.76;
+  margin-top: 18px;
+}
+
+/* ============================================================
+   SCROLL PROGRESS BAR
+   ============================================================ */
+.scroll-prog {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0;
+  z-index: 1000;
+  background: linear-gradient(90deg, #1A6EDB, #00C9A7);
+  box-shadow: 0 0 8px rgba(26,110,219,.5);
+  pointer-events: none;
+  transition: width .1s linear;
+}
+
+/* ============================================================
+   MARQUEE
+   ============================================================ */
+@keyframes marquee {
+  to { transform: translateX(calc(-50% - 24px)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  [class*="animate-marquee"] { animation: none; }
 }
