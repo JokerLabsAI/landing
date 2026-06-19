@@ -17,3 +17,4 @@ steps:
       vercelTeamId: 'wVvjdHoSMeLahq6AxYugTzr3'
       vercelToken: $(PAT-vercel)
       production: true
+      debug: true
