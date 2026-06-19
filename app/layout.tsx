@@ -29,11 +29,13 @@ export const metadata: Metadata = {
     description: "Creative technology lab. AI, software, automation, and systems under one roof. Cali, Colombia — working globally.",
     type: "website",
     url: "https://jokerlabs.ai",
+    images: [{ url: "https://jokerlabs.ai/opengraph-image", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Joker Labs — Every suit. One hand.",
     description: "Creative technology lab. AI · Software · Automation · Systems.",
+    images: ["https://jokerlabs.ai/opengraph-image"],
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "https://jokerlabs.ai" },
