@@ -14,7 +14,8 @@ steps:
     displayName: Deploy to Vercel
     inputs:
       vercelProjectId: 'prj_O8guUeA0Vy4UMsiWFdvbHUrLvGCc'
-      vercelTeamId: 'wVvjdHoSMeLahq6AxYugTzr3'
+      vercelTeamId: 'team_MFN4wLjnUblGCD8qM9jGoWRn'
       vercelToken: $(PAT-vercel)
       production: true
       debug: true
+      logs: true
