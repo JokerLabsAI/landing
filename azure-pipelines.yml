@@ -10,25 +10,10 @@ variables:
   - group: landing-jokerlabs
 
 steps:
-  - task: NodeTool@0
-    displayName: Use Node 20
+  - task: vercel-deployment-task@3
+    displayName: Deploy to Vercel
     inputs:
-      versionSpec: '20.x'
-
-  - script: npm install -g pnpm
-    displayName: Install pnpm
-
-  - script: npm install -g vercel
-    displayName: Install Vercel CLI
-
-  - script: vercel pull --yes --environment=production --token=$(PAT-vercel)
-    displayName: Pull Vercel project settings
-    workingDirectory: jokerlabs-web
-
-  - script: vercel build --prod --token=$(PAT-vercel)
-    displayName: Build
-    workingDirectory: jokerlabs-web
-
-  - script: vercel deploy --prebuilt --prod --token=$(PAT-vercel)
-    displayName: Deploy to production
-    workingDirectory: jokerlabs-web
+      vercelProjectId: 'prj_O8guUeA0Vy4UMsiWFdvbHUrLvGCc'
+      vercelTeamId: 'wVvjdHoSMeLahq6AxYugTzr3'
+      vercelToken: $(PAT-vercel)
+      production: true
