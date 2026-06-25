@@ -19,7 +19,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://project-rubcd.vercel.app"),
+  metadataBase: new URL("https://jokerlabs.ai"),
   title: "Joker Labs — Every suit. One hand.",
   description:
     "Joker Labs is the creative technology lab that turns any idea or problem into high-impact solutions — AI, software, automation, and systems under one roof.",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: "Joker Labs — Every suit. One hand.",
     description: "Creative technology lab. AI, software, automation, and systems under one roof. Cali, Colombia — working globally.",
     type: "website",
-    url: "https://project-rubcd.vercel.app",
+    url: "https://jokerlabs.ai",
   },
   twitter: {
     card: "summary_large_image",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     description: "Creative technology lab. AI · Software · Automation · Systems.",
   },
   robots: { index: true, follow: true },
-  alternates: { canonical: "https://project-rubcd.vercel.app" },
+  alternates: { canonical: "https://jokerlabs.ai" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
