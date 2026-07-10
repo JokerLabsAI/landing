@@ -63,7 +63,7 @@ export const es: SiteContent = {
       },
       {
         industry: "Maverick · Wildcart AI",
-        title: "Software de Comercio Inteligente a la medida",
+        title: "Plataforma de Comercio Inteligente",
         desc: "Solución de comercio impulsada por IA donde puedes configurar completamente tu tienda personalizada a través de un agente conversacional, sin necesidad de programar. Personalización en tiempo real, lógica de productos e identidad de marca gestionadas de extremo a extremo por IA.",
         stat: "En progreso",
         statLabel: "Comercio impulsados por IA",
@@ -80,7 +80,7 @@ export const es: SiteContent = {
     items: [
       {
         title: "Herramientas, No Plantillas",
-        desc: "No reutilizamos lo que funcionó para otro problema. Cada solución nace de tu realidad: diseñada a medida, calibrada con precisión y construida para generar impacto.",
+        desc: "No reutilizamos lo que funcionó para otro problema: cada solución se diseña sobre tu problema real, con precisión de ingeniería. Y con un alcance definido desde el día uno, para resolver, no para reabrirse sin fin.",
       },
       {
         title: "Entregamos Antes de que se Enfríe el Café",
@@ -117,7 +117,7 @@ export const es: SiteContent = {
       { label: "Tiempos", jl: "Rápidos y confiables", hire: "Semanas más incorporación", agency: "Generalmente más lentos" },
       { label: "Flexibilidad", jl: "Escala cuando quieras", hire: "Contratos requeridos", agency: "Solo por proyecto" },
       { label: "Enfoque", jl: "Laboratorio multidisciplinario", hire: "Especialistas en silos", agency: "Depende de la agencia" },
-      { label: "Foco en cliente", jl: "Soluciones 100% a medida", hire: "Prioridades internas", agency: "Múltiples clientes a la vez" },
+      { label: "Foco en cliente", jl: "Ingeniería para cualquier reto, alcance definido", hire: "Prioridades internas", agency: "Múltiples clientes a la vez" },
       { label: "Soporte", jl: "Acompañamiento continuo", hire: "Capacidad interna", agency: "Suele terminar tras la entrega" },
     ],
   },
@@ -181,7 +181,7 @@ export const es: SiteContent = {
       },
       {
         question: "¿Aceptan requisitos personalizados?",
-        answer: "Absolutamente. Lo personalizado es nuestro estándar. No creemos en soluciones genéricas. Cada proyecto comienza con una llamada de descubrimiento para mapear el problema real; luego diseñamos la solución desde cero. Cualquier industria, cualquier restricción, cualquier escala.",
+        answer: "Sí. Nuestra ingeniería no está limitada a casos de uso predefinidos: podemos resolver problemas de cualquier industria, restricción o escala. Cada proyecto comienza con una llamada de descubrimiento para mapear el problema real y definir un alcance claro desde el día uno, y trabajamos dentro de ese alcance con disciplina, sin ciclos interminables de rehacer lo ya acordado.",
       },
       {
         question: "¿Cuál es su tiempo de entrega?",

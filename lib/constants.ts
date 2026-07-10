@@ -145,7 +145,7 @@ export const TEAM = [
   { initials: "JC", name: "Joker Cisthian",   role: "AI Engineer",      suit: "♦" },
   { initials: "JJ", name: "Joker Jhonas", role: "AI Engineer",    suit: "♣" },
   { initials: "JJ", name: "Joker Julian",  role: "Frontend Engineer",  suit: "♥" },
-  { initials: "JJ", name: "Joker Jse Five",  role: "Fullstack Engineer",   suit: "★" },
+  { initials: "JA", name: "Joker Jose Avenia",  role: "Fullstack Engineer",   suit: "★" },
 ] as const;
 
 // ─── FAQ ──────────────────────────────────────────────────────────────────────

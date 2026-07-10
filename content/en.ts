@@ -80,7 +80,7 @@ export const en: SiteContent = {
     items: [
       {
         title: "Tools, Not Templates",
-        desc: "We don't reuse solutions built for someone else's challenge. Every system starts with your reality: custom-built, precision-engineered, and designed for impact.",
+        desc: "We don't reuse solutions built for someone else's challenge: every system is engineered around your real problem, with precision. And with a scope defined from day one, so it moves forward, not reopens without end.",
       },
       {
         title: "We Ship Before Your Coffee Cools",
@@ -117,7 +117,7 @@ export const en: SiteContent = {
       { label: "Turnaround", jl: "Fast and reliable", hire: "Weeks plus onboarding", agency: "Often slower" },
       { label: "Flexibility", jl: "Scale whenever you need", hire: "Contracts required", agency: "Project-based only" },
       { label: "Approach", jl: "Multidisciplinary lab", hire: "Siloed specialists", agency: "Depends on the agency" },
-      { label: "Client Focus", jl: "100% custom solutions", hire: "Internal priorities", agency: "Multiple clients at once" },
+      { label: "Client Focus", jl: "Engineering for any challenge, scoped upfront", hire: "Internal priorities", agency: "Multiple clients at once" },
       { label: "Support", jl: "Ongoing partnership", hire: "Internal capacity", agency: "Often ends after delivery" },
     ],
   },
@@ -181,7 +181,7 @@ export const en: SiteContent = {
       },
       {
         question: "Do you accept custom requirements?",
-        answer: "Absolutely. Custom is our standard. We don't believe in generic solutions. Every project starts with a discovery call to map the real problem; then we design the solution from scratch. Any industry, any constraint, any scale.",
+        answer: "Yes. Our engineering isn't limited to pre-built use cases: we can solve problems across any industry, constraint, or scale. Every project starts with a discovery call to map the real problem and define a clear scope from day one, and we work within that scope with discipline, without endless cycles of reopening what's already been agreed.",
       },
       {
         question: "What is your turnaround time?",
